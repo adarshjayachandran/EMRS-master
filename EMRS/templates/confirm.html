@@ -1,0 +1,17 @@
+{% extends "./layout/layout.html" %}
+{% block content %}
+    <!-- Main Content
+    ================================================== -->
+    <header class="jumbotron bg-inverse text-xs-center center-vertically" role="banner">
+        <div class="container">
+            <!-- FACE -->
+            <div class="user_face" style="margin-top: 100px;">
+                <img src="../static/img/face.jpg"/>
+            </div>
+            <!-- ACTION BTNS -->
+            <h3 class="detected_mood">Are you {{ mood }} ?</h3>
+            <a class="btn m-b-1" style="margin-top: 20px;"  href="/capture" role="button"></span>Try Again</a>        
+            <a class="btn btn-secondary-outline m-b-1" style="margin-top: 20px;"  href="/movies/{{mood}}" role="button"></span>Show movies for "{{ mood }}"</a>        
+        </div>
+    </header>
+{% endblock %}

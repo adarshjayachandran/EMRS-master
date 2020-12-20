@@ -1,0 +1,51 @@
+{% extends "./layout/layout.html" %}
+{% block content %}
+    <!-- Main Content 
+    ================================================== -->
+
+    <div class="main-bg" style='background-image: url("../static/img/bg-testimonials.jpg");'>
+      <div class="main-bg-title">
+          <h1>Top Movies for <b>{{ mood }}</b></h1>
+      </div>
+    </div>  
+    <div class="container">
+
+    {% if movies %}
+      <hr>
+      <i>Showing {{ movies|length }} out of {{ nbMovies }} movies.</i>
+      {% for movie in movies %}
+      <a href="#">
+      <div class="movie-card">
+        <div class="row">
+          <div class="movie-thumbnail col-lg-2">
+            <img src="{{ movie.getImage }}"/>
+          </div>
+          <div class="movie-info col-lg-8">
+            <h4>{{ movie.getTitle }}</h4>
+            <p>{{ movie.getDescription|truncatechars:160 }}.. <a href="{{ movie.getURL }}" style="text-decoration: underline !important;">Read more</a></p>
+            <span class="rating"><img src="https://img.icons8.com/emoji/48/000000/star-emoji.png"/> <b>{{ movie.getRating }}</b></span>
+          </div>
+          <a class="movie-action col-lg-2" href="{{ movie.getURL }}">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+              width="30" height="30"
+              viewBox="0 0 172 172"
+              style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#cccccc"><path d="M34.4,18.06v135.86656l115.48188,-67.92656z"></path></g></g></svg>
+          </a>
+        </div>
+      </div>
+      </a>
+      {% endfor %}
+    {% endif %}
+
+    <ul class="pagination-btn">
+      {% for num in paginator.page_range %}
+        {% if movies.number == num %}
+          <a href="?page={{num}}"><li class="active-page"><b>{{num}}</b></li></a>
+        {% else %}
+          <a href="?page={{num}}"><li>{{num}}</li></a>
+        {% endif %}
+      {% endfor %}
+    </ul>
+    
+  </div>
+{% endblock %}
